@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cxpwnnbpmv7f1"]
+
+[ext_resource type="PackedScene" uid="uid://drln0i5ynbfwd" path="res://Scenes/Character/Principal_Character.tscn" id="1_mrf6p"]
+[ext_resource type="PackedScene" uid="uid://dwbjlsioeao04" path="res://Scenes/Test_Level.tscn" id="2_mwjvy"]
+
+[node name="Test_Scene" type="Node2D" unique_id=1842589869]
+
+[node name="CharacterBody2D" parent="." unique_id=1122684751 instance=ExtResource("1_mrf6p")]
+position = Vector2(-1, -65)
+
+[node name="TileMapLayer" parent="." unique_id=33286775 instance=ExtResource("2_mwjvy")]
