@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://drln0i5ynbfwd"]
 
 [ext_resource type="Texture2D" uid="uid://cdt0gy06ispfv" path="res://Assets/Character/Idle/Idle-Sheet.png" id="1_55tu8"]
-[ext_resource type="Script" uid="uid://bppyp4a6b7lim" path="res://Scenes/Character/Scripts/principal_character.gd" id="1_tmlgc"]
+[ext_resource type="Script" uid="uid://bppyp4a6b7lim" path="res://Scenes/Character/Playeable/principal_character.gd" id="1_tmlgc"]
 [ext_resource type="Texture2D" uid="uid://b6o5c17ce117" path="res://Assets/Character/Attack-01/Attack-01-Sheet.png" id="2_l45qt"]
 [ext_resource type="Texture2D" uid="uid://x6xwvstt5dle" path="res://Assets/Character/Jumlp-All/Jump-All-Sheet.png" id="2_vw4wj"]
 [ext_resource type="Texture2D" uid="uid://dw8nv8k2apwtr" path="res://Assets/Character/Run/Run-Sheet.png" id="3_oa0bv"]
 [ext_resource type="Texture2D" uid="uid://b3ylfjt3wxfji" path="res://Assets/Character/Jump-Start/Jump-Start-Sheet.png" id="3_s38tq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8yd2"]
+size = Vector2(20, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q4pxt"]
 atlas = ExtResource("2_l45qt")
@@ -215,20 +218,18 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8yd2"]
-size = Vector2(20, 50)
-
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1122684751 node_paths=PackedStringArray("anim")]
+[node name="Character" type="CharacterBody2D" unique_id=1122684751 node_paths=PackedStringArray("anim")]
+collision_mask = 6
 script = ExtResource("1_tmlgc")
-anim = NodePath("AnimatedSprite2D")
+anim = NodePath("Animations")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1242527024]
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=915518753]
+shape = SubResource("RectangleShape2D_r8yd2")
+
+[node name="Animations" type="AnimatedSprite2D" parent="." unique_id=1242527024]
 sprite_frames = SubResource("SpriteFrames_lsgf6")
 animation = &"Attack"
 autoplay = "Idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=915518753]
-shape = SubResource("RectangleShape2D_r8yd2")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=2139510229]
+[node name="Camera" type="Camera2D" parent="." unique_id=2139510229]
 zoom = Vector2(2, 2)

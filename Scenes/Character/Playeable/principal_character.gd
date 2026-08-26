@@ -7,6 +7,8 @@ const JUMP_VELOCITY = -400.0
 @export var anim:AnimatedSprite2D
 
 func _physics_process(delta: float) -> void:
+	#print("Posicion x: ",position.x," Posicion Y: ",position.y)
+	#print("Velocity x: ",velocity.x," Velocity Y: ",velocity.y)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -46,5 +48,17 @@ func animations():
 		anim.play("Down")
 	elif(is_on_floor()):
 		anim.play("Idle")
-	
-	
+
+func RunRight():
+	anim.play("Run")
+	anim.flip_h=false
+
+func RunLeft():
+	anim.play("Run")
+	anim.flip_h=true
+
+func IdleAnim():
+	anim.play("Idle")
+
+func Jump():
+	anim.play("Jump")

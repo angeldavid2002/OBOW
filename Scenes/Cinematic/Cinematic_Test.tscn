@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://croetge60wwt6"]
+
+[ext_resource type="PackedScene" uid="uid://dwbjlsioeao04" path="res://Scenes/Test_Level.tscn" id="1_t5s2h"]
+[ext_resource type="PackedScene" uid="uid://dg5xwscru7jfr" path="res://Scenes/Character/Cinematic/Principal_Character_Cinematics.tscn" id="2_giq3y"]
+
+[sub_resource type="Animation" id="Animation_ke6pr"]
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -40)]
+}
+
+[sub_resource type="Animation" id="Animation_2nyf5"]
+resource_name = "wander"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 5, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -40), Vector2(0, -25), Vector2(120, -25), Vector2(-120, -25)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Character")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.02, 5, 5.02, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"Jump"
+}, {
+"args": [],
+"method": &"IdleAnim"
+}, {
+"args": [],
+"method": &"RunRight"
+}, {
+"args": [],
+"method": &"IdleAnim"
+}, {
+"args": [],
+"method": &"RunLeft"
+}, {
+"args": [],
+"method": &"IdleAnim"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nrwrh"]
+_data = {
+&"RESET": SubResource("Animation_ke6pr"),
+&"wander": SubResource("Animation_2nyf5")
+}
+
+[node name="CinematicTest" type="Node2D" unique_id=1042825900]
+
+[node name="Platform" parent="." unique_id=33286775 instance=ExtResource("1_t5s2h")]
+
+[node name="Character" parent="." unique_id=1122684751 instance=ExtResource("2_giq3y")]
+position = Vector2(0, -40)
+
+[node name="Script" type="AnimationPlayer" parent="." unique_id=1716380663]
+libraries/ = SubResource("AnimationLibrary_nrwrh")
+autoplay = &"wander"
