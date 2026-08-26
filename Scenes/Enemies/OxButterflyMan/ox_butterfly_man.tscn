@@ -6,9 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://bg8cpqk1e5l15" path="res://Assets/Enemies/1/DeathFix.png" id="2_8w1kf"]
 [ext_resource type="Texture2D" uid="uid://dcgxq63m6n0xa" path="res://Assets/Enemies/1/HurtFix.png" id="3_o56qo"]
 [ext_resource type="Texture2D" uid="uid://bkp80cktmnymh" path="res://Assets/Enemies/1/WalkFix.png" id="5_bg7eu"]
+[ext_resource type="Texture2D" uid="uid://drco70fej8caj" path="res://Assets/Ui/06.png" id="7_o56qo"]
+[ext_resource type="Texture2D" uid="uid://dclcto57milru" path="res://Assets/Ui/Base-01.png" id="8_bg7eu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cq306"]
-size = Vector2(15, 35)
+size = Vector2(16, 35.000008)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w1kf"]
+size = Vector2(11.083334, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8w1kf"]
 atlas = ExtResource("1_c4iw7")
@@ -150,7 +155,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_syfxa")
 }],
-"loop": true,
+"loop": false,
 "name": &"Death",
 "speed": 6.0
 }, {
@@ -206,24 +211,194 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="OxButterflyMan" type="CharacterBody2D" unique_id=1107075691 node_paths=PackedStringArray("Rayo", "Anim")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oq3wu"]
+atlas = ExtResource("7_o56qo")
+region = Rect2(192, 64, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfmmb"]
+atlas = ExtResource("7_o56qo")
+region = Rect2(0, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kshsd"]
+atlas = ExtResource("7_o56qo")
+region = Rect2(144, 96, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oihcj"]
+atlas = ExtResource("7_o56qo")
+region = Rect2(96, 48, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iapdd"]
+atlas = ExtResource("7_o56qo")
+region = Rect2(48, 16, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8w1kf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oq3wu")
+}],
+"loop": true,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfmmb")
+}],
+"loop": true,
+"name": &"100",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kshsd")
+}],
+"loop": true,
+"name": &"25",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oihcj")
+}],
+"loop": true,
+"name": &"50",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iapdd")
+}],
+"loop": true,
+"name": &"75",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_o56qo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/HealthBar:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-24.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/EnemieIcon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-24.0]
+}
+
+[sub_resource type="Animation" id="Animation_bg7eu"]
+resource_name = "wiggle"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/HealthBar:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [-24.0, -22.0, -24.0, -22.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprites/EnemieIcon:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [-24.0, -22.0, -24.0, -22.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fnsyj"]
+_data = {
+&"RESET": SubResource("Animation_o56qo"),
+&"wiggle": SubResource("Animation_bg7eu")
+}
+
+[node name="OxButterflyMan" type="CharacterBody2D" unique_id=1107075691 node_paths=PackedStringArray("Rayo", "Anim", "HpAnim", "Collision", "HitBox", "HurtBox", "HurtArea")]
 scale = Vector2(1.8, 1.8)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_8w1kf")
-Rayo = NodePath("RayCast2D")
-Anim = NodePath("AnimatedSprite2D")
+Rayo = NodePath("Range")
+Anim = NodePath("Sprites/Animations")
+HpAnim = NodePath("Sprites/HealthBar")
+Collision = NodePath("Collision")
+HitBox = NodePath("AttackArea/HitBox")
+HurtBox = NodePath("HurtArea/HurtBox")
+HurtArea = NodePath("HurtArea")
+vida = 100
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1360882612]
-position = Vector2(0.29999942, 0.49999988)
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1360882612]
+position = Vector2(0, 0.83333284)
 scale = Vector2(0.99999976, 0.99999976)
 shape = SubResource("RectangleShape2D_cq306")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1951996235]
-sprite_frames = SubResource("SpriteFrames_o56qo")
-animation = &"Attack"
-autoplay = "Idle"
-
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=395233303]
+[node name="Range" type="RayCast2D" parent="." unique_id=395233303]
 rotation = -1.5707964
 target_position = Vector2(0, 20)
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=1601446924]
+collision_layer = 8
+
+[node name="HitBox" type="CollisionShape2D" parent="AttackArea" unique_id=926979676]
+position = Vector2(14, 0)
+shape = SubResource("RectangleShape2D_8w1kf")
+
+[node name="HurtArea" type="Area2D" parent="." unique_id=1474980972]
+collision_layer = 2
+collision_mask = 16
+
+[node name="HurtBox" type="CollisionShape2D" parent="HurtArea" unique_id=104050383]
+position = Vector2(0, 0.83333284)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_cq306")
+
+[node name="Sprites" type="Node2D" parent="." unique_id=753150221]
+
+[node name="Animations" type="AnimatedSprite2D" parent="Sprites" unique_id=1951996235]
+sprite_frames = SubResource("SpriteFrames_o56qo")
+animation = &"Death"
+autoplay = "Idle"
+
+[node name="HealthBar" type="AnimatedSprite2D" parent="Sprites" unique_id=1603740806]
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_8w1kf")
+animation = &"100"
+autoplay = "100"
+
+[node name="EnemieIcon" type="Sprite2D" parent="Sprites" unique_id=1863389202]
+position = Vector2(-25.000002, -24)
+texture = ExtResource("8_bg7eu")
+region_enabled = true
+region_rect = Rect2(0, 256, 16, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites" unique_id=1412619103]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_fnsyj")
+autoplay = &"wiggle"
+speed_scale = 6.0
+
+[connection signal="area_entered" from="HurtArea" to="." method="_on_hurt_area_area_entered"]
+[connection signal="area_exited" from="HurtArea" to="." method="_on_hurt_area_area_exited"]

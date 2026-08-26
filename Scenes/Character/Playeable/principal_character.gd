@@ -5,37 +5,59 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 @export var anim:AnimatedSprite2D
+@export var vida:int
+@export var texto:Label
+@export var alive:bool=true
+@export var HurtBox:CollisionShape2D
+@export var HitBox:CollisionShape2D
+@export var Dmg:float
+var bloqueado: bool = false 
+
+func _ready() -> void:
+	texto.text = "vida: "+ str(vida)
+	HitBox.disabled=true
+	Dmg=13
 
 func _physics_process(delta: float) -> void:
-	#print("Posicion x: ",position.x," Posicion Y: ",position.y)
-	#print("Velocity x: ",velocity.x," Velocity Y: ",velocity.y)
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	HitBox.disabled=true
+	gravity(delta)
+	move_and_slide()
+	if(vida<=0):
+			alive=false
+	if(alive):
+		if(not bloqueado):
+			move()
+			animations()
+	else:
+		if(HurtBox.disabled==false):
+			anim.play("Death")
+		HurtBox.disabled=true
 
-	# Handle jump.
+func move():
 	if Input.is_action_pressed("ui_up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	animations()
-	move_and_slide()
-	
+
+func gravity(delta:float):
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
 func animations():
-	
 	if(velocity.x<0):
 		anim.flip_h=true
+		HitBox.position.x=-14
 	elif(velocity.x>0):
 		anim.flip_h=false
+		HitBox.position.x=14
 	
 	if(Input.is_key_pressed(KEY_X)):
 		anim.play("Attack")
+		if(anim.frame==1 or anim.frame==5 or anim.frame==6):
+			HitBox.disabled=false
 	elif (velocity.y<0):
 		anim.play("Jump")
 	elif(velocity.y>0):
@@ -49,16 +71,19 @@ func animations():
 	elif(is_on_floor()):
 		anim.play("Idle")
 
-func RunRight():
-	anim.play("Run")
-	anim.flip_h=false
+func _on_hurt_area_area_entered(area: Area2D) -> void:
+	if(area.collision_layer==8):
+		vida=vida-10
+		texto.text = "vida: "+ str(vida)
+		anim.modulate="ff0000"
+		anim.play("Hurt")
+		bloqueado=true
+		await anim.animation_finished
+		bloqueado=false
 
-func RunLeft():
-	anim.play("Run")
-	anim.flip_h=true
+func _on_hurt_area_area_exited(area: Area2D) -> void:
+	if(area.collision_layer==8):
+		anim.modulate=Color.WHITE
 
-func IdleAnim():
-	anim.play("Idle")
-
-func Jump():
-	anim.play("Jump")
+func is_alive()->bool:
+	return alive
