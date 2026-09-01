@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://dyd5wiju8752t"]
 
-[ext_resource type="FontFile" uid="uid://4yts26hgb38c" path="res://Fonts/Nyxshade_Pixel.ttf" id="1_tgcv4"]
+[ext_resource type="FontFile" uid="uid://c8b6p5dgjsvmv" path="res://Fonts/alagard.ttf" id="1_tgcv4"]
 
 [resource]
 default_font = ExtResource("1_tgcv4")

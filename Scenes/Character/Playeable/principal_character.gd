@@ -34,13 +34,21 @@ func _physics_process(delta: float) -> void:
 		HurtBox.disabled=true
 
 func move():
-	if Input.is_action_pressed("ui_up") and is_on_floor():
+	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction = get_direction_x()
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+func get_direction_x()->int:
+	if Input.is_action_pressed("right"):
+		return 1
+	elif(Input.is_action_pressed("left")):
+		return -1
+	else:
+		return 0
 
 func gravity(delta:float):
 	if not is_on_floor():
@@ -54,7 +62,7 @@ func animations():
 		anim.flip_h=false
 		HitBox.position.x=14
 	
-	if(Input.is_key_pressed(KEY_X)):
+	if(Input.is_action_pressed("attack")):
 		anim.play("Attack")
 		if(anim.frame==1 or anim.frame==5 or anim.frame==6):
 			HitBox.disabled=false

@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dduqq74i82eqo"]
+
+[ext_resource type="Texture2D" uid="uid://dei6p8juv2fi7" path="res://Assets/Ui/MenuBackGround/all.png" id="1_pdcoe"]
+[ext_resource type="PackedScene" uid="uid://bv03ww0cj2oj3" path="res://Scenes/Components/home_button.tscn" id="2_0e2cf"]
+[ext_resource type="Theme" uid="uid://dyd5wiju8752t" path="res://Theme/Base.tres" id="3_5rloo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hjx5"]
+atlas = ExtResource("1_pdcoe")
+region = Rect2(0, 0, 1376, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv0xt"]
+atlas = ExtResource("1_pdcoe")
+region = Rect2(0, 1536, 1376, 768)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d0vkw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hjx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv0xt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Control" type="Control" unique_id=513752886]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="AnimatedSprite2D" parent="." unique_id=1970660973]
+position = Vector2(576, 324)
+scale = Vector2(0.8372093, 0.84375)
+sprite_frames = SubResource("SpriteFrames_d0vkw")
+autoplay = "default"
+
+[node name="HomeButton" parent="Background" unique_id=1437490886 instance=ExtResource("2_0e2cf")]
+anchors_preset = -1
+offset_left = -659.3333
+offset_top = -365.03705
+offset_right = -619.3333
+offset_bottom = -325.03705
+
+[node name="Tittle" type="Label" parent="Background" unique_id=1241346445]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1023.0
+offset_top = -330.0
+offset_right = -353.0
+offset_bottom = -266.0
+grow_horizontal = 2
+pivot_offset = Vector2(335, 32)
+theme = ExtResource("3_5rloo")
+theme_override_colors/font_color = Color(0.7607843, 0.5803922, 0.39215687, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "Configuracion"
+horizontal_alignment = 1
+vertical_alignment = 1

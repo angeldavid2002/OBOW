@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bv03ww0cj2oj3"]
+
+[ext_resource type="Texture2D" uid="uid://dclcto57milru" path="res://Assets/Ui/Base-01.png" id="1_bi1pm"]
+[ext_resource type="Script" uid="uid://dyl6u0hrb3dts" path="res://Scenes/Components/home_button.gd" id="2_p5lje"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klqnq"]
+atlas = ExtResource("1_bi1pm")
+region = Rect2(3, 243, 10, 9)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_57r1h"]
+texture = SubResource("AtlasTexture_klqnq")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57r1h"]
+atlas = ExtResource("1_bi1pm")
+region = Rect2(3, 243, 10, 9)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lwwqt"]
+texture = SubResource("AtlasTexture_57r1h")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0gcn"]
+atlas = ExtResource("1_bi1pm")
+region = Rect2(3, 243, 10, 9)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_klqnq"]
+texture = SubResource("AtlasTexture_r0gcn")
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="HomeButton" type="Button" unique_id=1437490886]
+offset_left = 32.0
+offset_top = 16.0
+offset_right = 72.0
+offset_bottom = 56.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_57r1h")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_lwwqt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_klqnq")
+script = ExtResource("2_p5lje")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

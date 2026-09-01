@@ -19,3 +19,9 @@ func IdleAnim():
 
 func Jump():
 	anim.play("Jump")
+	
+func Down():
+	anim.play("Down")
+
+func Attack():
+	anim.play("Attack")

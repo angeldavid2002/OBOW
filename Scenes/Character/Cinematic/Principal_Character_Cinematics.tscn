@@ -229,6 +229,3 @@ autoplay = "Idle"
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=915518753]
 shape = SubResource("RectangleShape2D_r8yd2")
-
-[node name="Camera" type="Camera2D" parent="." unique_id=2139510229]
-zoom = Vector2(2, 2)

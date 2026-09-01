@@ -1,0 +1,344 @@
+[gd_scene format=3 uid="uid://ctgt5eqrbekyg"]
+
+[ext_resource type="Texture2D" uid="uid://dei6p8juv2fi7" path="res://Assets/Ui/MenuBackGround/all.png" id="1_cyoxm"]
+[ext_resource type="Theme" uid="uid://dyd5wiju8752t" path="res://Theme/Base.tres" id="2_r0gcn"]
+[ext_resource type="PackedScene" uid="uid://bv03ww0cj2oj3" path="res://Scenes/Components/home_button.tscn" id="3_lwwqt"]
+[ext_resource type="Texture2D" uid="uid://dclcto57milru" path="res://Assets/Ui/Base-01.png" id="3_r0gcn"]
+[ext_resource type="PackedScene" uid="uid://dg5xwscru7jfr" path="res://Scenes/Character/Cinematic/Principal_Character_Cinematics.tscn" id="4_klqnq"]
+[ext_resource type="Texture2D" uid="uid://baljnl14djw07" path="res://Assets/Ui/00.png" id="5_57r1h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hjx5"]
+atlas = ExtResource("1_cyoxm")
+region = Rect2(0, 0, 1376, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv0xt"]
+atlas = ExtResource("1_cyoxm")
+region = Rect2(0, 1536, 1376, 768)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_klqnq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hjx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv0xt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwwqt"]
+atlas = ExtResource("3_r0gcn")
+region = Rect2(16, 224, 48, 48)
+
+[sub_resource type="Animation" id="Animation_gi5js"]
+resource_name = "MoveCharacter"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 4, 5, 6.5, 6.75, 7, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 12), Vector2(0, 12), Vector2(20, 12), Vector2(-20, 12), Vector2(0, 12), Vector2(0, 12), Vector2(0, 0), Vector2(0, 12), Vector2(0, 12)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 2, 4, 5, 6.5, 6.75, 7, 8, 8.5, 9, 9.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"RunRight"
+}, {
+"args": [],
+"method": &"RunLeft"
+}, {
+"args": [],
+"method": &"RunRight"
+}, {
+"args": [],
+"method": &"IdleAnim"
+}, {
+"args": [],
+"method": &"Jump"
+}, {
+"args": [],
+"method": &"Jump"
+}, {
+"args": [],
+"method": &"IdleAnim"
+}, {
+"args": [],
+"method": &"Down"
+}, {
+"args": [],
+"method": &"IdleAnim"
+}, {
+"args": [],
+"method": &"Down"
+}, {
+"args": [],
+"method": &"IdleAnim"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_a1sdo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(304, 480)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kbfsn"]
+_data = {
+&"MoveCharacter": SubResource("Animation_gi5js"),
+&"RESET": SubResource("Animation_a1sdo")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi5js"]
+atlas = ExtResource("5_57r1h")
+region = Rect2(240, 49, 16, 14)
+
+[sub_resource type="Animation" id="Animation_kbfsn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("AtlasTexture_gi5js")]
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tkmq4"]
+atlas = ExtResource("5_57r1h")
+region = Rect2(240, 48, 16, 14)
+
+[sub_resource type="Animation" id="Animation_fbkp5"]
+resource_name = "wiggle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [SubResource("AtlasTexture_gi5js"), SubResource("AtlasTexture_tkmq4"), SubResource("AtlasTexture_gi5js")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4ge3o"]
+_data = {
+&"RESET": SubResource("Animation_kbfsn"),
+&"wiggle": SubResource("Animation_fbkp5")
+}
+
+[sub_resource type="Animation" id="Animation_klqnq"]
+resource_name = "Attack"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Attack"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_57r1h"]
+_data = {
+&"Attack": SubResource("Animation_klqnq")
+}
+
+[node name="Instructions" type="Control" unique_id=1689013873]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="AnimatedSprite2D" parent="." unique_id=1573460446]
+position = Vector2(576, 324)
+scale = Vector2(0.8372093, 0.84375)
+sprite_frames = SubResource("SpriteFrames_klqnq")
+autoplay = "default"
+
+[node name="HomeButton" parent="Background" unique_id=1437490886 instance=ExtResource("3_lwwqt")]
+anchors_preset = -1
+offset_left = -659.3333
+offset_top = -365.03705
+offset_right = -619.3333
+offset_bottom = -325.03705
+
+[node name="Tittle" type="Label" parent="Background" unique_id=429546533]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1023.0
+offset_top = -330.0
+offset_right = -353.0
+offset_bottom = -266.0
+grow_horizontal = 2
+pivot_offset = Vector2(335, 32)
+theme = ExtResource("2_r0gcn")
+theme_override_colors/font_color = Color(0.7607843, 0.5803922, 0.39215687, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "Instrucciones"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftPanel" type="Sprite2D" parent="." unique_id=1760691766]
+position = Vector2(300, 370)
+scale = Vector2(10.333332, 9.666666)
+texture = SubResource("AtlasTexture_lwwqt")
+
+[node name="MovementCharacter" parent="LeftPanel" unique_id=1122684751 instance=ExtResource("4_klqnq")]
+position = Vector2(304, 480)
+scale = Vector2(0.38709682, 0.41379312)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftPanel/MovementCharacter" unique_id=902650474]
+libraries/ = SubResource("AnimationLibrary_kbfsn")
+autoplay = &"MoveCharacter"
+
+[node name="ArrowLeft" type="Sprite2D" parent="LeftPanel" unique_id=1512339955]
+position = Vector2(-4, -16)
+rotation = 1.5707964
+scale = Vector2(0.173, 0.2)
+texture = SubResource("AtlasTexture_gi5js")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftPanel/ArrowLeft" unique_id=1792332765]
+libraries/ = SubResource("AnimationLibrary_4ge3o")
+autoplay = &"wiggle"
+
+[node name="ArrowRight" type="Sprite2D" parent="LeftPanel" unique_id=1624324724]
+position = Vector2(-3.5, -13)
+rotation = -1.5707964
+scale = Vector2(0.173, 0.2)
+texture = SubResource("AtlasTexture_gi5js")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftPanel/ArrowRight" unique_id=1572395357]
+libraries/ = SubResource("AnimationLibrary_4ge3o")
+autoplay = &"wiggle"
+
+[node name="ArrowUp" type="Sprite2D" parent="LeftPanel" unique_id=1418273434]
+position = Vector2(-3.8, -10)
+rotation = 3.1415927
+scale = Vector2(0.173, 0.2)
+texture = SubResource("AtlasTexture_gi5js")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftPanel/ArrowUp" unique_id=300018037]
+libraries/ = SubResource("AnimationLibrary_4ge3o")
+autoplay = &"wiggle"
+
+[node name="ArrowDown" type="Sprite2D" parent="LeftPanel" unique_id=808243926]
+position = Vector2(-3.8, -7)
+scale = Vector2(0.173, 0.2)
+texture = SubResource("AtlasTexture_gi5js")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LeftPanel/ArrowDown" unique_id=1523383330]
+libraries/ = SubResource("AnimationLibrary_4ge3o")
+autoplay = &"wiggle"
+
+[node name="RightPanel" type="Sprite2D" parent="." unique_id=1725211934]
+position = Vector2(850, 370)
+scale = Vector2(10.333332, 9.666666)
+texture = SubResource("AtlasTexture_lwwqt")
+
+[node name="CombatCharacter" parent="RightPanel" unique_id=316485505 instance=ExtResource("4_klqnq")]
+position = Vector2(7.6293945e-06, 11.586208)
+scale = Vector2(0.38709682, 0.41379312)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RightPanel/CombatCharacter" unique_id=1934647749]
+libraries/ = SubResource("AnimationLibrary_57r1h")
+autoplay = &"Attack"
+
+[node name="MovementSubtittle" type="Label" parent="." unique_id=1947813651]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 176.0
+offset_right = 274.0
+offset_bottom = 206.0
+theme = ExtResource("2_r0gcn")
+theme_override_colors/font_color = Color(0.2812, 0.69616, 0.76, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "Movimiento:"
+vertical_alignment = 1
+
+[node name="MovementText" type="Label" parent="MovementSubtittle" unique_id=1583689084]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 112.0
+offset_bottom = 117.0
+theme = ExtResource("2_r0gcn")
+theme_override_colors/font_color = Color(0.7607843, 0.5803922, 0.39215687, 1)
+theme_override_constants/line_spacing = 8
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Izquierda: A -
+Derecha:  D -
+Arriba:	 W -
+Agacharse: S -"
+vertical_alignment = 1
+
+[node name="CombatSubtittle" type="Label" parent="." unique_id=581850402]
+layout_mode = 0
+offset_left = 648.0
+offset_top = 176.0
+offset_right = 815.0
+offset_bottom = 206.0
+theme = ExtResource("2_r0gcn")
+theme_override_colors/font_color = Color(0.2812, 0.69616, 0.76, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 30
+text = "Combate:"
+vertical_alignment = 1
+
+[node name="CombatText" type="Label" parent="CombatSubtittle" unique_id=2002679833]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 112.0
+offset_bottom = 64.0
+theme = ExtResource("2_r0gcn")
+theme_override_colors/font_color = Color(0.7607843, 0.5803922, 0.39215687, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 20
+text = "Atacar: x"
+vertical_alignment = 1

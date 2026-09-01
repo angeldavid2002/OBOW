@@ -81,6 +81,7 @@ offset_bottom = 31.983994
 grow_horizontal = 2
 pivot_offset = Vector2(335, 32)
 theme = ExtResource("3_kpx3y")
+theme_override_colors/font_color = Color(0.7607843, 0.5803922, 0.39215687, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 64
@@ -106,15 +107,18 @@ alignment = 1
 
 [node name="PlayButton" parent="VBoxContainer" unique_id=1495945979 instance=ExtResource("3_sg7ab")]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.7607843, 0.5803922, 0.39215687, 1)
 text = "JUGAR"
 
 [node name="InstructionsButton" parent="VBoxContainer" unique_id=520931726 instance=ExtResource("3_sg7ab")]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.7607843, 0.5803922, 0.39215687, 1)
 text = "INSTRUCCIONES
 "
 
 [node name="ExitButton" parent="VBoxContainer" unique_id=404525331 instance=ExtResource("3_sg7ab")]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.7607843, 0.5803922, 0.39215687, 1)
 text = "SALIR"
 
 [node name="Options" type="Button" parent="." unique_id=1155340953]
@@ -126,3 +130,5 @@ offset_bottom = 86.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_8qovt")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_vapy7")
 theme_override_styles/hover = SubResource("StyleBoxTexture_0hjx5")
+
+[connection signal="pressed" from="Options" to="." method="_on_options_pressed"]

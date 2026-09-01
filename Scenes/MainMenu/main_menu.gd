@@ -5,7 +5,6 @@ extends Control
 @export var InstructionsButton:BaseButton
 @export var ExitButton:BaseButton
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	PlayButton.custom_action=play
@@ -18,10 +17,12 @@ func _process(delta: float) -> void:
 
 func play() ->void:
 	get_tree().change_scene_to_file("res://Scenes/Test_Scene.tscn")
-	pass
 
 func instructions() ->void:
-	pass
+	get_tree().change_scene_to_file("res://Scenes/MainMenu/Instructions.tscn")
 
 func exit() -> void:
 	get_tree().quit()
+
+func _on_options_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/MainMenu/Configuration.tscn")
