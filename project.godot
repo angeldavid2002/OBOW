@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="OBOW (Other Book Other World)"
-run/main_scene="uid://cxpwnnbpmv7f1"
+run/main_scene="uid://dh05mhq4atrmk"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,6 +23,10 @@ project/assembly_name="OBOW (Other Book Other World)"
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[gui]
+
+theme/custom_font="uid://4yts26hgb38c"
 
 [layer_names]
 

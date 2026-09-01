@@ -11,7 +11,6 @@
 [node name="OxButterflyMan" parent="." unique_id=1107075691 node_paths=PackedStringArray("Target") instance=ExtResource("3_mwjvy")]
 position = Vector2(-118, -52)
 Target = NodePath("../Character")
-vida = 10
 
 [node name="Character" parent="." unique_id=1122684751 instance=ExtResource("1_mrf6p")]
 position = Vector2(-1, -65)

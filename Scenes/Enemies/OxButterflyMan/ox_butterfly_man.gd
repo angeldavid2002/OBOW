@@ -90,7 +90,6 @@ func _on_hurt_area_area_entered(area: Area2D) -> void:
 		HpAnim.modulate=Color(1, 1, 1) * 3.0  
 		vida=vida-Target.Dmg
 
-
 func _on_hurt_area_area_exited(area: Area2D) -> void:
 	if(area.collision_layer==16):
 		Anim.modulate=Color.WHITE

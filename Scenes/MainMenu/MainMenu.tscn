@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://dh05mhq4atrmk"]
+
+[ext_resource type="Script" uid="uid://b8qopyrt5mol8" path="res://Scenes/MainMenu/main_menu.gd" id="1_kpx3y"]
+[ext_resource type="Texture2D" uid="uid://dei6p8juv2fi7" path="res://Assets/Ui/MenuBackGround/all.png" id="2_vapy7"]
+[ext_resource type="Theme" uid="uid://dyd5wiju8752t" path="res://Theme/Base.tres" id="3_kpx3y"]
+[ext_resource type="PackedScene" uid="uid://bttqxskn42j85" path="res://Scenes/Components/BaseButton.tscn" id="3_sg7ab"]
+[ext_resource type="Texture2D" uid="uid://qawyb4uwjp6m" path="res://Assets/Ui/config.png" id="5_ua038"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hjx5"]
+atlas = ExtResource("2_vapy7")
+region = Rect2(0, 0, 1376, 768)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv0xt"]
+atlas = ExtResource("2_vapy7")
+region = Rect2(0, 1536, 1376, 768)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lic31"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hjx5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv0xt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vapy7"]
+atlas = ExtResource("5_ua038")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8qovt"]
+texture = SubResource("AtlasTexture_vapy7")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua038"]
+atlas = ExtResource("5_ua038")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vapy7"]
+texture = SubResource("AtlasTexture_ua038")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qovt"]
+atlas = ExtResource("5_ua038")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0hjx5"]
+texture = SubResource("AtlasTexture_8qovt")
+
+[node name="Menu" type="Control" unique_id=174282509 node_paths=PackedStringArray("PlayButton", "InstructionsButton", "ExitButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kpx3y")
+PlayButton = NodePath("VBoxContainer/PlayButton")
+InstructionsButton = NodePath("VBoxContainer/InstructionsButton")
+ExitButton = NodePath("VBoxContainer/ExitButton")
+
+[node name="Background" type="AnimatedSprite2D" parent="." unique_id=449755961]
+position = Vector2(576, 324)
+scale = Vector2(0.8372093, 0.84375)
+sprite_frames = SubResource("SpriteFrames_lic31")
+autoplay = "default"
+
+[node name="Tittle" type="Label" parent="." unique_id=1307072161]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.142
+anchor_right = 0.499
+anchor_bottom = 0.142
+offset_left = -334.84802
+offset_top = -32.016006
+offset_right = 335.15198
+offset_bottom = 31.983994
+grow_horizontal = 2
+pivot_offset = Vector2(335, 32)
+theme = ExtResource("3_kpx3y")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "Other Book Other World"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=451287499]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -167.75
+offset_top = -166.0
+offset_right = 167.75
+offset_bottom = 166.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PlayButton" parent="VBoxContainer" unique_id=1495945979 instance=ExtResource("3_sg7ab")]
+layout_mode = 2
+text = "JUGAR"
+
+[node name="InstructionsButton" parent="VBoxContainer" unique_id=520931726 instance=ExtResource("3_sg7ab")]
+layout_mode = 2
+text = "INSTRUCCIONES
+"
+
+[node name="ExitButton" parent="VBoxContainer" unique_id=404525331 instance=ExtResource("3_sg7ab")]
+layout_mode = 2
+text = "SALIR"
+
+[node name="Options" type="Button" parent="." unique_id=1155340953]
+layout_mode = 0
+offset_left = 1056.0
+offset_top = 16.0
+offset_right = 1126.0
+offset_bottom = 86.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_8qovt")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_vapy7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0hjx5")
